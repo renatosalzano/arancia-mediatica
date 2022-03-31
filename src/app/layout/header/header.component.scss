@@ -1,0 +1,89 @@
+@import "../../style/variable.scss";
+
+.navbar {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding: 0 10px;
+  background-color: var(--primaryColor);
+  color: white;
+  z-index: 1000;
+}
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  max-width: 768px;
+  height: 100%;
+}
+
+.logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  .logo-img {
+    height: 40px;
+  }
+  h1 {
+    font-size: 16px;
+    line-height: 40px;
+    white-space: nowrap;
+    justify-self: end;
+    margin: 0;
+  }
+}
+
+.menu-button {
+  grid-area: buttons;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.login-button {
+  cursor: pointer;
+}
+
+.menu {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  --mobileWidth: 220px;
+  &.mobile {
+    grid-area: unset;
+    position: fixed;
+    right: 0;
+    top: 50px;
+    bottom: 0;
+    width: var(--mobileWidth);
+    background-color: #292726;
+    transform: translate3d(var(--mobileWidth), 0, 0);
+    transition: transform 400ms ease;
+    z-index: 3000;
+    &.open {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+.menu-trigger {
+  position: fixed;
+  inset: 0 0 0 0;
+  background-color: #00000036;
+  z-index: 1000;
+  animation: fade-in 400ms forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,16 @@
+<div class="item-head">
+  <strong class="item-title">{{ title }}</strong>
+  <item-button
+    (onEdit)="handleEdit()"
+    (onDelete)="handleDelete()"
+  ></item-button>
+</div>
+<span *ngIf="subtitle" class="item-subtitle">{{ subtitle }}</span>
+<img *ngIf="thumbnail" class="item-cover" src="{{ thumbnail }}" alt="cover" />
+<span *ngIf="description" class="item-description"> {{ description }}</span>
+<strong class="item-obj-name" *ngIf="object && object.name">{{
+  object.name
+}}</strong>
+<span class="item-obj-year" *ngIf="object && object.year">{{
+  object.year
+}}</span>

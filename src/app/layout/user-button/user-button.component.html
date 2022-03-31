@@ -1,0 +1,26 @@
+<div class="login-container">
+  <button
+    *ngIf="!isLogged"
+    class="btn btn-light login-button"
+    (click)="cognitoLogin()"
+  >
+    Login
+  </button>
+  <div *ngIf="isLogged" class="user-button">
+    <img
+      class="picture"
+      src="{{ userInfo.picture }}"
+      alt="me"
+      (click)="toggleDropdown()"
+    />
+  </div>
+  <div class="dropdown-insert">
+    <div *ngIf="showDropdown" class="user-dropdown">
+      <span class="user-name">Hello {{ userInfo.name }}</span>
+      <button class="btn btn-danger logout-button" (click)="cognitoLogout()">
+        <i class="material-icons">logout</i>
+        Logout
+      </button>
+    </div>
+  </div>
+</div>

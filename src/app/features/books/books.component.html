@@ -1,0 +1,24 @@
+<div class="scroll-container">
+  <div class="item-list">
+    <ng-container *ngFor="let item of itemList">
+      <app-item
+        [title]="item.title"
+        [subtitle]="item.author"
+        [description]="item.description"
+        [thumbnail]="item.image_url"
+        (onEdit)="editBook(item)"
+        (onDelete)="deleteBook(item.book_id)"
+      ></app-item>
+    </ng-container>
+  </div>
+  <span *ngIf="itemList.length === 0">Nothing interesting here</span>
+  <app-dynamic-form
+    [openForm]="openForm"
+    [editMode]="editMode"
+    [formGroup]="itemForm"
+    [fields]="itemField"
+    (onSubmit)="onSubmit()"
+    (onUpdateSubmit)="onUpdateSubmit()"
+    (onToggler)="toggleForm()"
+  ></app-dynamic-form>
+</div>

@@ -1,0 +1,13 @@
+:host {
+  grid-area: pages;
+  max-height: 100%;
+  max-width: 100%;
+  margin-bottom: 50px;
+  overflow-y: auto;
+}
+
+.books-page {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+}

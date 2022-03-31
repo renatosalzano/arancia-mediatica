@@ -1,0 +1,29 @@
+<div [ngClass]="cssClass">
+  <div *ngIf="isMobile" class="user-info">
+    <span>Hi {{ user.name }}</span>
+    <img class="picture" src="{{ user.picture }}" alt="me" />
+  </div>
+  <a routerLink="/books" class="link-menu" (click)="handleClick()">
+    <i class="material-icons">collections_bookmark</i>
+    <span class="link-text">Books</span>
+  </a>
+
+  <a routerLink="/series" class="link-menu" (click)="handleClick()">
+    <i class="material-icons">tv</i><span class="link-text">Tv Series</span>
+  </a>
+
+  <a routerLink="/movies" class="link-menu" (click)="handleClick()">
+    <i class="material-icons">local_movies</i>
+    <span class="link-text">Movies</span>
+  </a>
+
+  <a routerLink="/music" class="link-menu" (click)="handleClick()">
+    <i class="material-icons">music_video </i>
+    <span class="link-text">Music</span>
+  </a>
+
+  <div *ngIf="isMobile" class="link-menu" (click)="cognitoLogout()">
+    <i class="material-icons">logout</i>
+    <span class="link-text">Logout</span>
+  </div>
+</div>

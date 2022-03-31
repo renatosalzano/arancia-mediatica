@@ -1,0 +1,122 @@
+<div [ngClass]="setFormClass()">
+  <div class="form-content" #formRef>
+    <div [ngClass]="setHeadClass()">
+      <span *ngIf="!openForm">NEW</span>
+      <span *ngIf="openForm">CLOSE</span>
+      <div [ngClass]="setButtonClass()" (click)="handleControlButton()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          role="img"
+          width="100%"
+          height="100%"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 1024 1024"
+        >
+          <path
+            fill="currentColor"
+            d="M764.288 214.592L512 466.88L259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512L214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"
+          />
+        </svg>
+      </div>
+    </div>
+    <form
+      [formGroup]="formGroup"
+      (submit)="submitHandler()"
+      class="form-container"
+    >
+      <!-- START INPUT LOOP -->
+      <ng-container *ngFor="let field of fields">
+        <ng-container ngSwitch="{{ field.type }}">
+          <div *ngSwitchCase="'number'">
+            <label for="{{ field.name }}">{{ field.label }}</label>
+            <input
+              [ngClass]="setClassName(field.name)"
+              type="{{ field.type }}"
+              name="{{ field.name }}"
+              placeholder="{{ field.placeholder }}"
+              formControlName="{{ field.name }}"
+              min="{{ field.min }}"
+              max="{{ field.max }}"
+            />
+          </div>
+          <div *ngSwitchCase="'textarea'">
+            <label for="{{ field.name }}">{{ field.label }}</label>
+            <textarea
+              [ngClass]="setClassName(field.name)"
+              name="{{ field.name }}"
+              placeholder="{{ field.placeholder }}"
+              formControlName="{{ field.name }}"
+            ></textarea>
+          </div>
+          <ng-container *ngSwitchCase="'file'">
+            <div>
+              <label for="{{ field.name }}">{{ field.label }}</label>
+              <input
+                [ngClass]="setClassName(field.name)"
+                type="{{ field.type }}"
+                name="{{ field.name }}"
+                placeholder="{{ field.placeholder }}"
+                formControlName="{{ field.name }}"
+                (change)="onFileSelected($event)"
+              />
+            </div>
+            <div
+              *ngIf="imageSelected"
+              class="image-container alert alert-primary"
+            >
+              <div class="delete-image-button" (click)="deleteImage()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  width="100%"
+                  height="100%"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 1024 1024"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M764.288 214.592L512 466.88L259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512L214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"
+                  />
+                </svg>
+              </div>
+              <img
+                class="thumbnail"
+                *ngIf="imageSelected"
+                src="{{ imageSelected }}"
+              />
+            </div>
+          </ng-container>
+          <div *ngSwitchDefault class="field-container">
+            <label for="{{ field.name }}">{{ field.label }}</label>
+            <input
+              [ngClass]="setClassName(field.name)"
+              type="{{ field.type }}"
+              name="{{ field.name }}"
+              placeholder="{{ field.placeholder }}"
+              formControlName="{{ field.name }}"
+            />
+            <small *ngIf="isRequired(field.name)" class="text-danger"
+              >Required</small
+            >
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <!-- END INPUT LOOP -->
+      <button *ngIf="!editMode" type="submit" class="btn btn-success btn-lg">
+        Aggiungi
+      </button>
+      <button
+        *ngIf="editMode"
+        type="button"
+        class="btn btn-success btn-lg"
+        (click)="updateItem()"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</div>
+<div *ngIf="openForm" class="form-trigger" (click)="handleToggler()"></div>

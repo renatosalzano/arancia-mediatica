@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--primaryColor);
+  background-color: #fff;
+  .item-head {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 40px;
+    align-items: start;
+    width: 100%;
+  }
+  .item-cover {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    margin-bottom: 4px;
+  }
+
+  .item-title {
+    font-size: 18px;
+    text-transform: capitalize;
+  }
+
+  .item-subtitle,
+  .item-obj-name,
+  .item-obj-year {
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+
+  .item-description {
+    display: -webkit-box;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 16px;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
+}

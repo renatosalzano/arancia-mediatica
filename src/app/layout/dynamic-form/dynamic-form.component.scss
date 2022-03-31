@@ -1,0 +1,113 @@
+.dynamic-form {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-height: 100%;
+  transform: translate3D(0, calc(100% - 50px), 0);
+  transition: transform 400ms ease;
+  z-index: 1000;
+
+  .form-content {
+    flex: 1;
+    max-width: 768px;
+    border-top: 2px solid var(--primaryColor);
+    overflow: hidden;
+
+    background-color: #fff;
+    transition: transform 400ms ease;
+  }
+
+  &.open {
+    transform: translate3D(0, 0, 0);
+    .form-content {
+      border-top: none;
+    }
+  }
+
+  .form-head {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    color: var(--primaryColor);
+    background-color: #fff;
+    &.close {
+      background-color: var(--primaryColor);
+      color: #fff;
+    }
+  }
+  .form-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 8px;
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+    .form-control {
+      margin-bottom: 24px;
+    }
+    .field-container {
+      position: relative;
+      small {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.control-button {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  svg {
+    position: absolute;
+    inset: 0 0 0 0;
+    padding: 4px;
+    transform: rotate(45deg);
+    transition: transform 400ms ease;
+  }
+  &.close {
+    svg {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+.image-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 220px;
+  padding: 8px;
+  .delete-image-button {
+    cursor: pointer;
+    svg {
+      width: 36px;
+      height: 36px;
+      padding: 4px;
+    }
+  }
+
+  .thumbnail {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+}
+
+.form-trigger {
+  position: fixed;
+  inset: 0 0 0 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 900;
+}

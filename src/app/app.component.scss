@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+:host {
+  --primaryColor: #ff3d00;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.theme-color {
+  --primaryColor: #ff3d00;
+}
+
+.pages-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(auto, 768px) auto;
+  grid-template-areas: ". pages .";
+  width: 100%;
+  height: 100%;
+  padding-top: 50px;
+  scroll-snap-type: y mandatory;
+}
+
+.pages {
+  grid-area: pages;
+}
+
+.footer-test {
+  scroll-snap-align: start;
+  width: 100%;
+  height: 400px;
+  background-color: var(--primaryColor);
+}
